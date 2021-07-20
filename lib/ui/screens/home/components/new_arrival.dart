@@ -5,36 +5,62 @@ import 'package:ecommerce_app/ui/models/Product.dart';
 import '../../../size_config.dart';
 import 'section_title.dart';
 
-class New_Arrival extends StatelessWidget {
+class NewArrivals extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Padding(
-          padding:
-              EdgeInsets.symmetric(horizontal: getProportionateScreenWidth(20)),
-          child: SectionTitle(title: "New Arrivals", press: () {}),
+    return Container(
+      color: Colors.white12,
+      height: 195,
+      child: Container(
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.only(
+              topLeft: Radius.circular(3),
+              topRight: Radius.circular(3),
+              bottomLeft: Radius.circular(3),
+              bottomRight: Radius.circular(3)),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.grey.withOpacity(0.5),
+              spreadRadius: 5,
+              blurRadius: 7,
+              offset: Offset(0, 3), // changes position of shadow
+            ),
+          ],
         ),
-        SizedBox(height: getProportionateScreenWidth(20)),
-        SingleChildScrollView(
-          scrollDirection: Axis.horizontal,
-          child: Row(
-            children: [
-              ...List.generate(
-                demoProducts.length,
-                (index) {
-                  if (demoProducts[index].isPopular)
-                    return ProductCard(product: demoProducts[index]);
-
-                  return SizedBox
-                      .shrink(); // here by default width and height is 0
-                },
+        child: Column(
+          children: [
+            Container(
+              margin:
+                  EdgeInsets.only(left: 0.0, top: 0, right: 0.0, bottom: 2.0),
+              child: Padding(
+                padding: EdgeInsets.symmetric(
+                    horizontal: getProportionateScreenWidth(10)),
+                child: SectionTitle(title: "New Arrivals", press: () {}),
               ),
-              SizedBox(width: getProportionateScreenWidth(20)),
-            ],
-          ),
-        )
-      ],
+            ),
+            SizedBox(height: getProportionateScreenWidth(5)),
+            SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              child: Row(
+                children: [
+                  ...List.generate(
+                    demoProducts.length,
+                    (index) {
+                      if (demoProducts[index].isPopular)
+                        return ProductCard(product: demoProducts[index]);
+
+                      return SizedBox
+                          .shrink(); // here by default width and height is 0
+                    },
+                  ),
+                  SizedBox(width: getProportionateScreenWidth(10)),
+                ],
+              ),
+            )
+          ],
+        ),
+      ),
     );
   }
 }

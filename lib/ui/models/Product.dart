@@ -31,6 +31,8 @@ List<Product> demoProducts = [
       "assets/images/ps4_console_white_2.png",
       "assets/images/ps4_console_white_3.png",
       "assets/images/ps4_console_white_4.png",
+      "assets/images/ps4_console_blue_4.png",
+      "assets/images/ps4_console_blue_2.png",
     ],
     colors: [
       Color(0xFFF6625E),
@@ -83,7 +85,7 @@ List<Product> demoProducts = [
   Product(
     id: 4,
     images: [
-      "assets/images/wireless headset.png",
+      "assets/images/ps4_console_blue_2.png",
     ],
     colors: [
       Color(0xFFF6625E),
@@ -91,11 +93,30 @@ List<Product> demoProducts = [
       Color(0xFFDECB9C),
       Colors.white,
     ],
-    title: "Logitech Head",
-    price: 20.20,
+    title: "asdasd",
+    price: 36.55,
     description: description,
     rating: 4.1,
     isFavourite: true,
+    isPopular: true,
+  ),
+  Product(
+    id: 5,
+    images: [
+      "assets/images/ps4_console_white_2.png",
+    ],
+    colors: [
+      Color(0xFFF6625E),
+      Color(0xFF836DB8),
+      Color(0xFFDECB9C),
+      Colors.white,
+    ],
+    title: "a",
+    price: 36.55,
+    description: description,
+    rating: 4.1,
+    isFavourite: true,
+    isPopular: true,
   ),
 ];
 
