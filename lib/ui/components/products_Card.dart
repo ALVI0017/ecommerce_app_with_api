@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'dart:js';
 
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:ecommerce_app/data/models/Products.dart';
 import 'package:ecommerce_app/data/models/trending_products.dart';
 import 'package:flutter/material.dart';
@@ -32,8 +33,15 @@ Widget product_card(ProductParse product) {
                   child: Hero(
                     tag: product.slNo,
                     child: Container(
-                        child: Image.network(product.storyImage,
-                            fit: BoxFit.fitWidth)),
+                      child: CachedNetworkImage(
+                        imageUrl: product.storyImage,
+                        fit: BoxFit.fill,
+                        placeholder: (context, url) =>
+                            Center(child: CircularProgressIndicator()),
+                        errorWidget: (context, url, error) =>
+                            new Icon(Icons.error),
+                      ),
+                    ),
                   ),
                 ),
               ),

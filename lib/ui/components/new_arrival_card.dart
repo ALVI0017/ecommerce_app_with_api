@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:ecommerce_app/data/models/new_arrivals.dart';
 import 'package:flutter/material.dart';
 import '../constants.dart';
@@ -27,7 +28,14 @@ Widget n_arrival_card(NewArrivalParse n_arrival) {
                   child: Hero(
                     tag: n_arrival.slNo,
                     child:
-                        Container(child: Image.network(n_arrival.productImage)),
+                    CachedNetworkImage(
+                      imageUrl: n_arrival.productImage,
+                      fit: BoxFit.fill,
+                      placeholder: (context, url) =>
+                          Center(child: CircularProgressIndicator()),
+                      errorWidget: (context, url, error) =>
+                      new Icon(Icons.error),
+                    ),
                   ),
                 ),
               ),

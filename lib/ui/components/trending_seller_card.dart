@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:ecommerce_app/data/models/Test_Product.dart';
 
@@ -42,10 +43,14 @@ Widget t_seller_card(TrendingSellerparse t_seller) {
                   padding: EdgeInsets.all(getProportionateScreenWidth(10)),
                   child: Hero(
                     tag: t_seller.slNo,
-                    child: Container(
-                        height: 150,
-                        width: 100,
-                        child: Image.network(t_seller.sellerProfilePhoto)),
+                    child: CachedNetworkImage(
+                      imageUrl: t_seller.sellerProfilePhoto,
+                      fit: BoxFit.fill,
+                      placeholder: (context, url) =>
+                          Center(child: CircularProgressIndicator()),
+                      errorWidget: (context, url, error) =>
+                      new Icon(Icons.error),
+                    ),
                   ),
                 ),
               ),

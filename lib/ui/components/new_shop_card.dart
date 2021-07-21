@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:ecommerce_app/data/models/new_arrivals.dart';
 import 'package:ecommerce_app/data/models/new_shops.dart';
 import 'package:flutter/material.dart';
@@ -27,8 +28,14 @@ Widget n_shop_card(NewShopParse n_shops) {
                   padding: EdgeInsets.all(getProportionateScreenWidth(10)),
                   child: Hero(
                     tag: n_shops.slNo,
-                    child: Container(
-                        child: Image.network(n_shops.sellerProfilePhoto)),
+                    child: CachedNetworkImage(
+                      imageUrl: n_shops.sellerProfilePhoto,
+                      fit: BoxFit.fill,
+                      placeholder: (context, url) =>
+                          Center(child: CircularProgressIndicator()),
+                      errorWidget: (context, url, error) =>
+                          new Icon(Icons.error),
+                    ),
                   ),
                 ),
               ),
