@@ -1,5 +1,4 @@
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:ecommerce_app/data/models/new_arrivals.dart';
 import 'package:ecommerce_app/data/models/new_shops.dart';
 import 'package:flutter/material.dart';
 import '../constants.dart';

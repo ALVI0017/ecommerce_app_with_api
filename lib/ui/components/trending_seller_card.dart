@@ -6,21 +6,7 @@ import '../constants.dart';
 import '../size_config.dart';
 import 'package:ecommerce_app/data/models/trending_sellers.dart';
 
-// class ProductCard extends StatelessWidget {
-//   const ProductCard({
-//     Key key,
-//     this.width = 140,
-//     this.aspectRetio = 1.02,
-//     // @required this.product,
-//     @required this.t_seller,
-//   }) : super(key: key);
-//
-//   final double width, aspectRetio;
-//   // final Product product;
-//   final TrendingSellerparse t_seller;
-
 Widget t_seller_card(TrendingSellerparse t_seller) {
-
   return Padding(
     padding: EdgeInsets.only(left: getProportionateScreenWidth(5)),
     child: SizedBox(
@@ -49,7 +35,7 @@ Widget t_seller_card(TrendingSellerparse t_seller) {
                       placeholder: (context, url) =>
                           Center(child: CircularProgressIndicator()),
                       errorWidget: (context, url, error) =>
-                      new Icon(Icons.error),
+                          new Icon(Icons.error),
                     ),
                   ),
                 ),
@@ -60,19 +46,6 @@ Widget t_seller_card(TrendingSellerparse t_seller) {
                 style: TextStyle(color: Colors.black),
                 maxLines: 1,
               ),
-              // Row(
-              //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              //   children: [
-              //     Text(
-              //       "\BDT ${product.price}",
-              //       style: TextStyle(
-              //         fontSize: getProportionateScreenWidth(10),
-              //         fontWeight: FontWeight.w600,
-              //         color: kPrimaryColor,
-              //       ),
-              //     ),
-              //   ],
-              // )
             ],
           ),
         ),

@@ -1,11 +1,6 @@
-import 'dart:convert';
-import 'dart:js';
-
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:ecommerce_app/data/models/Products.dart';
-import 'package:ecommerce_app/data/models/trending_products.dart';
 import 'package:flutter/material.dart';
-import 'package:ecommerce_app/data/models/Test_Product.dart';
 
 import '../constants.dart';
 import '../size_config.dart';
@@ -14,7 +9,7 @@ Widget product_card(ProductParse product) {
   return Padding(
     padding: EdgeInsets.all(getProportionateScreenWidth(5)),
     child: SizedBox(
-      height: 350,
+      height: 400,
       child: Container(
         padding: EdgeInsets.all(getProportionateScreenWidth(5)),
         decoration: BoxDecoration(
@@ -35,7 +30,7 @@ Widget product_card(ProductParse product) {
                     child: Container(
                       child: CachedNetworkImage(
                         imageUrl: product.storyImage,
-                        fit: BoxFit.fill,
+                        fit: BoxFit.cover,
                         placeholder: (context, url) =>
                             Center(child: CircularProgressIndicator()),
                         errorWidget: (context, url, error) =>
