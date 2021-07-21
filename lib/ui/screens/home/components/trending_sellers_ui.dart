@@ -44,32 +44,12 @@ Widget build_tseller(List<TrendingSellerparse> t_seller) {
                   t_seller.length,
                   (index) {
                     return t_seller_card(t_seller[index]);
-
-                    // return SizedBox
-                    //     .shrink(); // here by default width and height is 0
                   },
                 ),
                 SizedBox(width: getProportionateScreenWidth(10)),
               ],
             ),
           )
-          // SingleChildScrollView(
-          //   scrollDirection: Axis.horizontal,
-          //   child: Row(
-          //     children: [
-          //       ...List.generate(
-          //         demoProducts.length,
-          //         (index) {
-          //           product_card(demoProducts[index]);
-          //
-          //           return SizedBox
-          //               .shrink(); // here by default width and height is 0
-          //         },
-          //       ),
-          //       SizedBox(width: getProportionateScreenWidth(10)),
-          //     ],
-          //   ),
-          // )
         ],
       ),
     ),

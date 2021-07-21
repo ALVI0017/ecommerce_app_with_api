@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:ecommerce_app/data/models/Product.dart';
-import 'package:fluttertoast/fluttertoast.dart';
+import 'package:ecommerce_app/data/models/Test_Product.dart';
 
 import '../constants.dart';
 import '../size_config.dart';
@@ -20,14 +19,7 @@ import 'package:ecommerce_app/data/models/trending_sellers.dart';
 //   final TrendingSellerparse t_seller;
 
 Widget t_seller_card(TrendingSellerparse t_seller) {
-  Fluttertoast.showToast(
-      msg: "alvi" + t_seller.toString(),
-      toastLength: Toast.LENGTH_SHORT,
-      gravity: ToastGravity.CENTER,
-      timeInSecForIosWeb: 1,
-      backgroundColor: Colors.red,
-      textColor: Colors.white,
-      fontSize: 16.0);
+
   return Padding(
     padding: EdgeInsets.only(left: getProportionateScreenWidth(5)),
     child: SizedBox(

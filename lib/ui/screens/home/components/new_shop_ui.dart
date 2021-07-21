@@ -1,6 +1,4 @@
-import 'package:ecommerce_app/data/models/new_arrivals.dart';
 import 'package:ecommerce_app/data/models/new_shops.dart';
-import 'package:ecommerce_app/ui/components/new_arrival_card.dart';
 import 'package:ecommerce_app/ui/components/new_shop_card.dart';
 import 'package:flutter/material.dart';
 import '../../../size_config.dart';

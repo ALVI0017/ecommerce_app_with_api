@@ -45,8 +45,7 @@ Widget build_N_arrival(List<NewArrivalParse> n_arrival) {
                   (index) {
                     return n_arrival_card(n_arrival[index]);
 
-                    // return SizedBox
-                    //     .shrink(); // here by default width and height is 0
+
                   },
                 ),
                 SizedBox(width: getProportionateScreenWidth(10)),

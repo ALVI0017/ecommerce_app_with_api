@@ -1,3 +1,7 @@
+import 'dart:convert';
+import 'dart:js';
+
+import 'package:ecommerce_app/data/models/Products.dart';
 import 'package:ecommerce_app/data/models/trending_products.dart';
 import 'package:flutter/material.dart';
 import 'package:ecommerce_app/data/models/Test_Product.dart';
@@ -5,12 +9,11 @@ import 'package:ecommerce_app/data/models/Test_Product.dart';
 import '../constants.dart';
 import '../size_config.dart';
 
-Widget t_product_card(TrendingProductparse t_product) {
+Widget product_card(ProductParse product) {
   return Padding(
-    padding: EdgeInsets.only(left: getProportionateScreenWidth(5)),
+    padding: EdgeInsets.all(getProportionateScreenWidth(5)),
     child: SizedBox(
-      height: 152,
-      width: getProportionateScreenWidth(140 / 1.4),
+      height: 350,
       child: Container(
         padding: EdgeInsets.all(getProportionateScreenWidth(5)),
         decoration: BoxDecoration(
@@ -23,24 +26,25 @@ Widget t_product_card(TrendingProductparse t_product) {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               AspectRatio(
-                aspectRatio: 1,
+                aspectRatio: 1.2,
                 child: Container(
-                  padding: EdgeInsets.all(getProportionateScreenWidth(10)),
+                  padding: EdgeInsets.all(getProportionateScreenWidth(2)),
                   child: Hero(
-                    tag: t_product.slNo,
-                    child:
-                        Container(child: Image.network(t_product.productImage)),
+                    tag: product.slNo,
+                    child: Container(
+                        child: Image.network(product.storyImage,
+                            fit: BoxFit.fitWidth)),
                   ),
                 ),
               ),
               const SizedBox(height: 2),
               Text(
-                t_product.productName.toString(),
+                product.companyName.toString(),
                 style: TextStyle(color: Colors.black),
                 maxLines: 1,
               ),
               Text(
-                '৳' + t_product.unitPrice.toString(),
+                '৳' + product.unitPrice.toString(),
                 style: TextStyle(color: Colors.deepOrange, fontSize: 12),
                 maxLines: 1,
               ),
