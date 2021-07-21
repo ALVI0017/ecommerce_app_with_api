@@ -19,7 +19,7 @@ import 'package:ecommerce_app/data/models/trending_sellers.dart';
 //   // final Product product;
 //   final TrendingSellerparse t_seller;
 
-Widget product_card(TrendingSellerparse t_seller) {
+Widget t_seller_card(TrendingSellerparse t_seller) {
   Fluttertoast.showToast(
       msg: "alvi" + t_seller.toString(),
       toastLength: Toast.LENGTH_SHORT,

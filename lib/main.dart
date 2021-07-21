@@ -1,4 +1,4 @@
-import 'package:ecommerce_app/bloc/t_seller_bloc.dart';
+import 'package:ecommerce_app/bloc/trendingsellers/t_seller_bloc.dart';
 import 'package:ecommerce_app/data/repository/trending_seller_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:ecommerce_app/routes.dart';

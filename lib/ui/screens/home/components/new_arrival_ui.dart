@@ -1,5 +1,5 @@
 // import 'package:flutter/material.dart';
-// import 'package:ecommerce_app/ui/components/product_card.dart';
+// import 'package:ecommerce_app/ui/components/trending_seller_card.dart';
 // import 'package:ecommerce_app/data/models/Product.dart';
 //
 // import '../../../size_config.dart';

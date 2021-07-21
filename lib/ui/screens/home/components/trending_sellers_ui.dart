@@ -1,9 +1,6 @@
 import 'package:ecommerce_app/data/models/trending_sellers.dart';
 import 'package:flutter/material.dart';
-import 'package:ecommerce_app/ui/components/product_card.dart';
-import 'package:ecommerce_app/data/models/Product.dart';
-import 'package:fluttertoast/fluttertoast.dart';
-
+import 'package:ecommerce_app/ui/components/trending_seller_card.dart';
 import '../../../size_config.dart';
 import 'section_title.dart';
 
@@ -46,7 +43,7 @@ Widget build_tseller(List<TrendingSellerparse> t_seller) {
                 ...List.generate(
                   t_seller.length,
                   (index) {
-                    return product_card(t_seller[index]);
+                    return t_seller_card(t_seller[index]);
 
                     // return SizedBox
                     //     .shrink(); // here by default width and height is 0

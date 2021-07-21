@@ -5,8 +5,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import 'package:ecommerce_app/bloc/t_seller_event.dart';
-import 'package:ecommerce_app/bloc/t_seller_state.dart';
+import 'package:ecommerce_app/bloc/trendingsellers/t_seller_event.dart';
+import 'package:ecommerce_app/bloc/trendingsellers/t_seller_state.dart';
 import 'package:ecommerce_app/data/models/trending_sellers.dart';
 import 'package:ecommerce_app/data/repository/trending_seller_repository.dart';
 

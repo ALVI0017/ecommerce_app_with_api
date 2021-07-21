@@ -1,6 +1,9 @@
-import 'package:ecommerce_app/bloc/t_seller_bloc.dart';
-import 'package:ecommerce_app/bloc/t_seller_event.dart';
-import 'package:ecommerce_app/bloc/t_seller_state.dart';
+import 'package:ecommerce_app/bloc/trendingproducts/t_product_bloc.dart';
+import 'package:ecommerce_app/bloc/trendingproducts/t_product_event.dart';
+import 'package:ecommerce_app/bloc/trendingproducts/t_product_state.dart';
+import 'package:ecommerce_app/bloc/trendingsellers/t_seller_bloc.dart';
+import 'package:ecommerce_app/bloc/trendingsellers/t_seller_event.dart';
+import 'package:ecommerce_app/bloc/trendingsellers/t_seller_state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -23,10 +26,13 @@ class Body extends StatefulWidget {
 
 class _BodyState extends State<Body> {
   T_SellerBloc t_sellerBloc;
+  T_ProductBloc t_productBloc;
   @override
   void initState() {
     t_sellerBloc = BlocProvider.of<T_SellerBloc>(context);
     t_sellerBloc.add(FetchT_Seller());
+    t_productBloc = BlocProvider.of<T_ProductBloc>(context);
+    t_productBloc.add(FetchT_Product());
     super.initState();
   }
 
@@ -36,9 +42,9 @@ class _BodyState extends State<Body> {
       child: SingleChildScrollView(
         child: Column(
           children: [
-            // SizedBox(height: getProportionateScreenHeight(10)),
-            // HomeHeader(),
-            // SizedBox(height: getProportionateScreenWidth(10)),
+            SizedBox(height: getProportionateScreenHeight(10)),
+            HomeHeader(),
+            SizedBox(height: getProportionateScreenWidth(10)),
             // // BlocBuilder<FoodBloc, FoodState>(builder: (context, state) {
             // //   if (state is FoodInitialState) {
             // //     return buildLoading();
@@ -70,9 +76,29 @@ class _BodyState extends State<Body> {
               }
             }),
 
-            // SizedBox(height: getProportionateScreenWidth(10)),
+            SizedBox(height: getProportionateScreenWidth(10)),
+            BlocBuilder<T_ProductBloc, T_ProductState>(
+                builder: (context, state) {
+              if (state is T_ProductInitialState) {
+                return buildLoading();
+              } else if (state is T_ProductLoadingState) {
+                Fluttertoast.showToast(
+                    msg: state.toString(),
+                    toastLength: Toast.LENGTH_SHORT,
+                    gravity: ToastGravity.CENTER,
+                    timeInSecForIosWeb: 1,
+                    backgroundColor: Colors.red,
+                    textColor: Colors.white,
+                    fontSize: 16.0);
+                return buildLoading();
+              } else if (state is T_ProductLoadedState) {
+                return build_tproduct(state.t_products);
+              } else if (state is T_ProductErrorState) {
+                return buildError(state.message);
+              }
+            }),
             // TrendingProducts(),
-            // SizedBox(height: getProportionateScreenWidth(30)),
+            SizedBox(height: getProportionateScreenWidth(30)),
             // Categories(),
             // SizedBox(height: getProportionateScreenWidth(30)),
             // NewArrivals(),
