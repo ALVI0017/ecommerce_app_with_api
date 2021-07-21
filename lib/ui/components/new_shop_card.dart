@@ -1,22 +1,10 @@
-import 'package:ecommerce_app/data/models/trending_products.dart';
+import 'package:ecommerce_app/data/models/new_arrivals.dart';
+import 'package:ecommerce_app/data/models/new_shops.dart';
 import 'package:flutter/material.dart';
-import 'package:ecommerce_app/data/models/Product.dart';
-import 'package:fluttertoast/fluttertoast.dart';
-
 import '../constants.dart';
 import '../size_config.dart';
 
-
-
-Widget t_product_card(TrendingProductparse t_product) {
-  Fluttertoast.showToast(
-      msg: "alvi" + t_product.toString(),
-      toastLength: Toast.LENGTH_SHORT,
-      gravity: ToastGravity.CENTER,
-      timeInSecForIosWeb: 1,
-      backgroundColor: Colors.red,
-      textColor: Colors.white,
-      fontSize: 16.0);
+Widget n_shop_card(NewShopParse n_shops) {
   return Padding(
     padding: EdgeInsets.only(left: getProportionateScreenWidth(5)),
     child: SizedBox(
@@ -34,24 +22,24 @@ Widget t_product_card(TrendingProductparse t_product) {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               AspectRatio(
-                aspectRatio: 1,
+                aspectRatio: 1.2,
                 child: Container(
                   padding: EdgeInsets.all(getProportionateScreenWidth(10)),
                   child: Hero(
-                    tag: t_product.slNo,
-                    child:
-                        Container(child: Image.network(t_product.productImage)),
+                    tag: n_shops.slNo,
+                    child: Container(
+                        child: Image.network(n_shops.sellerProfilePhoto)),
                   ),
                 ),
               ),
               const SizedBox(height: 2),
               Text(
-                t_product.productName.toString(),
+                n_shops.ezShopName.toString(),
                 style: TextStyle(color: Colors.black),
                 maxLines: 1,
               ),
               Text(
-                '৳' + t_product.unitPrice.toString(),
+                n_shops.aboutCompany.toString(),
                 style: TextStyle(color: Colors.deepOrange, fontSize: 12),
                 maxLines: 1,
               ),

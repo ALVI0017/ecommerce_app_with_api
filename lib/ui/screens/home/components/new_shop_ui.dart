@@ -1,10 +1,12 @@
 import 'package:ecommerce_app/data/models/new_arrivals.dart';
+import 'package:ecommerce_app/data/models/new_shops.dart';
 import 'package:ecommerce_app/ui/components/new_arrival_card.dart';
+import 'package:ecommerce_app/ui/components/new_shop_card.dart';
 import 'package:flutter/material.dart';
 import '../../../size_config.dart';
 import 'section_title.dart';
 
-Widget build_N_arrival(List<NewArrivalParse> n_arrival) {
+Widget build_N_Shop(List<NewShopParse> n_shop) {
   return Container(
     color: Colors.white12,
     height: 195,
@@ -32,7 +34,7 @@ Widget build_N_arrival(List<NewArrivalParse> n_arrival) {
             child: Padding(
               padding: EdgeInsets.symmetric(
                   horizontal: getProportionateScreenWidth(10)),
-              child: SectionTitle(title: "New Arrivals", press: () {}),
+              child: SectionTitle(title: "New Shops", press: () {}),
             ),
           ),
           SizedBox(height: getProportionateScreenWidth(5)),
@@ -41,9 +43,9 @@ Widget build_N_arrival(List<NewArrivalParse> n_arrival) {
             child: Row(
               children: [
                 ...List.generate(
-                  n_arrival.length,
+                  n_shop.length,
                   (index) {
-                    return n_arrival_card(n_arrival[index]);
+                    return n_shop_card(n_shop[index]);
 
                     // return SizedBox
                     //     .shrink(); // here by default width and height is 0

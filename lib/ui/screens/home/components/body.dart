@@ -1,3 +1,9 @@
+import 'package:ecommerce_app/bloc/newarrivals/n_arrival_bloc.dart';
+import 'package:ecommerce_app/bloc/newarrivals/n_arrival_event.dart';
+import 'package:ecommerce_app/bloc/newarrivals/n_arrival_state.dart';
+import 'package:ecommerce_app/bloc/newshops/n_shop_bloc.dart';
+import 'package:ecommerce_app/bloc/newshops/n_shop_event.dart';
+import 'package:ecommerce_app/bloc/newshops/n_shop_state.dart';
 import 'package:ecommerce_app/bloc/trendingproducts/t_product_bloc.dart';
 import 'package:ecommerce_app/bloc/trendingproducts/t_product_event.dart';
 import 'package:ecommerce_app/bloc/trendingproducts/t_product_state.dart';
@@ -11,6 +17,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 import '../../../size_config.dart';
 import 'categories.dart';
 import 'home_header.dart';
+import 'new_shop_ui.dart';
 import 'trending_products_ui.dart';
 import 'special_offers.dart';
 import 'trending_sellers_ui.dart';
@@ -27,12 +34,19 @@ class Body extends StatefulWidget {
 class _BodyState extends State<Body> {
   T_SellerBloc t_sellerBloc;
   T_ProductBloc t_productBloc;
+  N_arrivalBloc n_arrivalBloc;
+  N_shopBloc n_shopBloc;
+
   @override
   void initState() {
     t_sellerBloc = BlocProvider.of<T_SellerBloc>(context);
     t_sellerBloc.add(FetchT_Seller());
     t_productBloc = BlocProvider.of<T_ProductBloc>(context);
     t_productBloc.add(FetchT_Product());
+    n_arrivalBloc = BlocProvider.of<N_arrivalBloc>(context);
+    n_arrivalBloc.add(FetchN_arrival());
+    n_shopBloc = BlocProvider.of<N_shopBloc>(context);
+    n_shopBloc.add(FetchN_shop());
     super.initState();
   }
 
@@ -56,25 +70,17 @@ class _BodyState extends State<Body> {
             // //     return buildError(state.message);
             // //   }
             // // }),
-            BlocBuilder<T_SellerBloc, T_SellerState>(builder: (context, state) {
-              if (state is T_SellerInitialState) {
-                return buildLoading();
-              } else if (state is T_SellerLoadingState) {
-                Fluttertoast.showToast(
-                    msg: state.toString(),
-                    toastLength: Toast.LENGTH_SHORT,
-                    gravity: ToastGravity.CENTER,
-                    timeInSecForIosWeb: 1,
-                    backgroundColor: Colors.red,
-                    textColor: Colors.white,
-                    fontSize: 16.0);
-                return buildLoading();
-              } else if (state is T_SellerLoadedState) {
-                return build_tseller(state.t_sellers);
-              } else if (state is T_SellerErrorState) {
-                return buildError(state.message);
-              }
-            }),
+            // BlocBuilder<T_SellerBloc, T_SellerState>(builder: (context, state) {
+            //   if (state is T_SellerInitialState) {
+            //     return buildLoading();
+            //   } else if (state is T_SellerLoadingState) {
+            //     return buildLoading();
+            //   } else if (state is T_SellerLoadedState) {
+            //     return build_tseller(state.t_sellers);
+            //   } else if (state is T_SellerErrorState) {
+            //     return buildError(state.message);
+            //   }
+            // }),
 
             SizedBox(height: getProportionateScreenWidth(10)),
             BlocBuilder<T_ProductBloc, T_ProductState>(
@@ -82,18 +88,39 @@ class _BodyState extends State<Body> {
               if (state is T_ProductInitialState) {
                 return buildLoading();
               } else if (state is T_ProductLoadingState) {
-                Fluttertoast.showToast(
-                    msg: state.toString(),
-                    toastLength: Toast.LENGTH_SHORT,
-                    gravity: ToastGravity.CENTER,
-                    timeInSecForIosWeb: 1,
-                    backgroundColor: Colors.red,
-                    textColor: Colors.white,
-                    fontSize: 16.0);
                 return buildLoading();
               } else if (state is T_ProductLoadedState) {
                 return build_tproduct(state.t_products);
               } else if (state is T_ProductErrorState) {
+                return buildError(state.message);
+              }
+            }),
+            // TrendingProducts(),
+            SizedBox(height: getProportionateScreenWidth(10)),
+
+            BlocBuilder<N_arrivalBloc, N_arrivalState>(
+                builder: (context, state) {
+              if (state is N_arrivalInitialState) {
+                return buildLoading();
+              } else if (state is N_arrivalLoadingState) {
+                return buildLoading();
+              } else if (state is N_arrivalLoadedState) {
+                return build_N_arrival(state.n_arrivals);
+              } else if (state is N_arrivalErrorState) {
+                return buildError(state.message);
+              }
+            }),
+            // TrendingProducts(),
+            SizedBox(height: getProportionateScreenWidth(10)),
+
+            BlocBuilder<N_shopBloc, N_shopState>(builder: (context, state) {
+              if (state is N_shopInitialState) {
+                return buildLoading();
+              } else if (state is N_shopLoadingState) {
+                return buildLoading();
+              } else if (state is N_shopLoadedState) {
+                return build_N_Shop(state.n_shops);
+              } else if (state is N_shopErrorState) {
                 return buildError(state.message);
               }
             }),
