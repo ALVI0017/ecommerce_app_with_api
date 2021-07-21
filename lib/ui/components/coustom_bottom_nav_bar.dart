@@ -27,8 +27,8 @@ class CustomBottomNavBar extends StatelessWidget {
           ),
         ],
         borderRadius: BorderRadius.only(
-          topLeft: Radius.circular(40),
-          topRight: Radius.circular(40),
+          topLeft: Radius.circular(2),
+          topRight: Radius.circular(2),
         ),
       ),
       child: SafeArea(
