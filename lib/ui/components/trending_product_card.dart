@@ -29,14 +29,13 @@ Widget t_product_card(TrendingProductparse t_product) {
                   padding: EdgeInsets.all(getProportionateScreenWidth(10)),
                   child: Hero(
                     tag: t_product.slNo,
-                    child:
-                    CachedNetworkImage(
-                      imageUrl: t_product.sellerProfilePhoto,
+                    child: CachedNetworkImage(
+                      imageUrl: t_product.productImage,
                       fit: BoxFit.fill,
                       placeholder: (context, url) =>
                           Center(child: CircularProgressIndicator()),
                       errorWidget: (context, url, error) =>
-                      new Icon(Icons.error),
+                          new Icon(Icons.error),
                     ),
                   ),
                 ),
