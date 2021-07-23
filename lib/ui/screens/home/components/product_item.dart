@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import '../../../size_config.dart';
 import 'section_title.dart';
 
-Widget build_product(List<ProductParse> product, int x) {
+Widget build_product(List<ProductParse> product, int x, int start, int end) {
   return Container(
     child: Column(
       children: [
@@ -26,7 +26,7 @@ Widget build_product(List<ProductParse> product, int x) {
                 (index) {
                   return product_card(product[index]);
                 },
-              ),
+              ).getRange(start, end),
               SizedBox(width: getProportionateScreenWidth(10)),
             ],
           ),

@@ -51,19 +51,6 @@ Widget product_card(ProductParse product) {
                 style: TextStyle(color: Colors.deepOrange, fontSize: 12),
                 maxLines: 1,
               ),
-              // Row(
-              //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              //   children: [
-              //     Text(
-              //       "\BDT ${product.price}",
-              //       style: TextStyle(
-              //         fontSize: getProportionateScreenWidth(10),
-              //         fontWeight: FontWeight.w600,
-              //         color: kPrimaryColor,
-              //       ),
-              //     ),
-              //   ],
-              // )
             ],
           ),
         ),

@@ -64,8 +64,7 @@ class _BodyState extends State<Body> {
             }),
 
             SizedBox(height: getProportionateScreenWidth(10)),
-            BlocBuilder<T_ProductBloc, X_State>(
-                builder: (context, state) {
+            BlocBuilder<T_ProductBloc, X_State>(builder: (context, state) {
               if (state is InitialState) {
                 return buildLoading();
               } else if (state is LoadingState) {
@@ -84,15 +83,15 @@ class _BodyState extends State<Body> {
               } else if (state is LoadingState) {
                 return buildLoading();
               } else if (state is ProductLoadedState) {
-                return build_product(state.products, 3);
+                return build_product(
+                    state.products, state.products.length, 0, 3);
               } else if (state is ProductErrorState) {
                 return buildError(state.message);
               }
             }),
             SizedBox(height: getProportionateScreenWidth(10)),
 
-            BlocBuilder<N_arrivalBloc, X_State>(
-                builder: (context, state) {
+            BlocBuilder<N_arrivalBloc, X_State>(builder: (context, state) {
               if (state is InitialState) {
                 return buildLoading();
               } else if (state is LoadingState) {
@@ -112,7 +111,8 @@ class _BodyState extends State<Body> {
               } else if (state is LoadingState) {
                 return buildLoading();
               } else if (state is ProductLoadedState) {
-                return build_product(state.products, 3);
+                return build_product(
+                    state.products, state.products.length, 3, 6);
               } else if (state is ProductErrorState) {
                 return buildError(state.message);
               }
@@ -139,7 +139,8 @@ class _BodyState extends State<Body> {
               } else if (state is LoadingState) {
                 return buildLoading();
               } else if (state is ProductLoadedState) {
-                return build_product(state.products, state.products.length);
+                return build_product(state.products, state.products.length, 7,
+                    state.products.length);
               } else if (state is ProductErrorState) {
                 return buildError(state.message);
               }
