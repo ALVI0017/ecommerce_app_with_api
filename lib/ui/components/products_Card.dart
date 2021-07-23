@@ -13,7 +13,7 @@ Widget product_card(ProductParse product) {
       child: Container(
         padding: EdgeInsets.all(getProportionateScreenWidth(5)),
         decoration: BoxDecoration(
-          color: kSecondaryColor.withOpacity(0.1),
+          color: Colors.white,
           borderRadius: BorderRadius.circular(5),
         ),
         child: GestureDetector(
@@ -21,8 +21,63 @@ Widget product_card(ProductParse product) {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              Row(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.all(5.0),
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(50),
+                      child: CachedNetworkImage(
+                        imageUrl: product.companyLogo,
+                        fit: BoxFit.cover,
+                        height: 40,
+                        width: 40,
+                        placeholder: (context, url) =>
+                            Center(child: CircularProgressIndicator()),
+                        errorWidget: (context, url, error) =>
+                            new Icon(Icons.error),
+                      ),
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 10),
+                    child: Text.rich(
+                      TextSpan(
+                        children: [
+                          // WidgetSpan(
+                          //   child: Icon(Icons.add),
+                          // ),
+                          TextSpan(
+                              text: product.companyName.toString(),
+                              style: TextStyle(fontWeight: FontWeight.bold)),
+                          TextSpan(
+                            text: '\n' + product.friendlyTimeDiff.toString(),
+                            style: TextStyle(color: Colors.grey),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+              Padding(
+                padding: const EdgeInsets.only(left: 10),
+                child: Text.rich(
+                  TextSpan(
+                    children: [
+                      // WidgetSpan(
+                      //   child: Icon(Icons.add),
+                      // ),
+                      TextSpan(
+                        text: product.story.toString(),
+                        style: TextStyle(fontSize: 12),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
               AspectRatio(
-                aspectRatio: 1.2,
+                aspectRatio: 1.5,
                 child: Container(
                   padding: EdgeInsets.all(getProportionateScreenWidth(2)),
                   child: Hero(
@@ -41,15 +96,58 @@ Widget product_card(ProductParse product) {
                 ),
               ),
               const SizedBox(height: 2),
-              Text(
-                product.companyName.toString(),
-                style: TextStyle(color: Colors.black),
-                maxLines: 1,
-              ),
-              Text(
-                '৳' + product.unitPrice.toString(),
-                style: TextStyle(color: Colors.deepOrange, fontSize: 12),
-                maxLines: 1,
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Text.rich(
+                      TextSpan(
+                        children: [
+                          WidgetSpan(
+                            child: Icon(Icons.card_giftcard, size: 15),
+                          ),
+                          TextSpan(
+                              text: 'BDT ' + product.unitPrice.toString(),
+                              style: TextStyle(
+                                  fontWeight: FontWeight.bold, fontSize: 10)),
+                        ],
+                      ),
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Text.rich(
+                      TextSpan(
+                        children: [
+                          WidgetSpan(
+                            child: Icon(Icons.credit_card, size: 15),
+                          ),
+                          TextSpan(
+                              text: 'Online Payment ',
+                              style: TextStyle(
+                                  fontWeight: FontWeight.bold, fontSize: 10)),
+                        ],
+                      ),
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Text.rich(
+                      TextSpan(
+                        children: [
+                          WidgetSpan(
+                            child: Icon(Icons.shopping_cart_outlined, size: 15),
+                          ),
+                          TextSpan(
+                              text: product.orderQty.toString() + ' Order(s)',
+                              style: TextStyle(
+                                  fontWeight: FontWeight.bold, fontSize: 10)),
+                        ],
+                      ),
+                    ),
+                  ),
+                ],
               ),
             ],
           ),

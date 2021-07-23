@@ -37,34 +37,33 @@ class CustomBottomNavBar extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
               IconButton(
-                icon: SvgPicture.asset(
-                  "assets/icons/Shop Icon.svg",
-                  color: MenuState.home == selectedMenu
-                      ? kPrimaryColor
-                      : inActiveIconColor,
-                ),
+                // icon: SvgPicture.asset(
+                //   "assets/icons/Shop Icon.svg",
+                //   color: MenuState.home == selectedMenu
+                //       ? kPrimaryColor
+                //       : inActiveIconColor,
+                // ),
+                icon: Icon(Icons.home_outlined,
+                    color: MenuState.home == selectedMenu
+                        ? kPrimaryColor
+                        : inActiveIconColor),
                 onPressed: () =>
                     Navigator.pushNamed(context, HomeScreen.routeName),
               ),
               IconButton(
-                icon: SvgPicture.asset("assets/icons/Parcel.svg"),
+                  // icon: SvgPicture.asset("assets/icons/Parcel.svg"),
+                  // onPressed: () {},
+                  icon: Icon(Icons.shopping_bag)),
+              IconButton(
+                icon: Icon(Icons.store),
                 onPressed: () {},
               ),
               IconButton(
-                icon: SvgPicture.asset("assets/icons/Flash Icon.svg"),
+                icon: Icon(Icons.badge_outlined),
                 onPressed: () {},
               ),
               IconButton(
-                icon: SvgPicture.asset("assets/icons/Shop Icon.svg"),
-                onPressed: () {},
-              ),
-              IconButton(
-                icon: SvgPicture.asset(
-                  "assets/icons/User Icon.svg",
-                  color: MenuState.profile == selectedMenu
-                      ? kPrimaryColor
-                      : inActiveIconColor,
-                ),
+                icon: Icon(Icons.person),
                 onPressed: () {},
               ),
             ],

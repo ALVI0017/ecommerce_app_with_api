@@ -112,7 +112,7 @@ class _BodyState extends State<Body> {
                 return buildLoading();
               } else if (state is ProductLoadedState) {
                 return build_product(
-                    state.products, state.products.length, 3, 6);
+                    state.products, state.products.length, 4, 7);
               } else if (state is ProductErrorState) {
                 return buildError(state.message);
               }
@@ -139,7 +139,7 @@ class _BodyState extends State<Body> {
               } else if (state is LoadingState) {
                 return buildLoading();
               } else if (state is ProductLoadedState) {
-                return build_product(state.products, state.products.length, 7,
+                return build_product(state.products, state.products.length, 8,
                     state.products.length);
               } else if (state is ProductErrorState) {
                 return buildError(state.message);

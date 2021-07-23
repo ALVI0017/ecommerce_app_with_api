@@ -8,15 +8,7 @@ Widget build_product(List<ProductParse> product, int x, int start, int end) {
   return Container(
     child: Column(
       children: [
-        Container(
-          margin: EdgeInsets.only(left: 0.0, top: 0, right: 0.0, bottom: 2.0),
-          child: Padding(
-            padding: EdgeInsets.symmetric(
-                horizontal: getProportionateScreenWidth(10)),
-            child: SectionTitle(title: "Products", press: () {}),
-          ),
-        ),
-        SizedBox(height: getProportionateScreenWidth(5)),
+        SizedBox(height: getProportionateScreenWidth(4)),
         SingleChildScrollView(
           scrollDirection: Axis.vertical,
           child: Column(
