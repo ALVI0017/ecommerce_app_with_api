@@ -5,9 +5,9 @@ List<List<TrendingSellerparse>> trendingSellerparseFromJson(var str) =>
         List<TrendingSellerparse>.from(
             x.map((x) => TrendingSellerparse.fromJson(x)))));
 
-String trendingSellerparseToJson(List<List<TrendingSellerparse>> data) =>
-    json.encode(List<dynamic>.from(
-        data.map((x) => List<dynamic>.from(x.map((x) => x.toJson())))));
+// String trendingSellerparseToJson(List<List<TrendingSellerparse>> data) =>
+//     json.encode(List<dynamic>.from(
+//         data.map((x) => List<dynamic>.from(x.map((x) => x.toJson())))));
 
 class TrendingSellerparse {
   TrendingSellerparse({
@@ -43,13 +43,13 @@ class TrendingSellerparse {
   double defaultPushScore;
   String aboutCompany;
   int allowCod;
-  dynamic division;
-  dynamic subDivision;
-  City city;
-  State state;
+  String division;
+  String subDivision;
+  String city;
+  String state;
   String zipcode;
-  Country country;
-  CurrencyCode currencyCode;
+  String country;
+  String currencyCode;
   int orderQty;
   int orderAmount;
   int salesQty;
@@ -66,16 +66,15 @@ class TrendingSellerparse {
         sellerItemPhoto: json["sellerItemPhoto"],
         ezShopName: json["ezShopName"],
         defaultPushScore: json["defaultPushScore"].toDouble(),
-        aboutCompany:
-            json["aboutCompany"] == null ? null : json["aboutCompany"],
+        aboutCompany: json["aboutCompany"],
         allowCod: json["allowCOD"],
         division: json["division"],
-        subDivision: json["subDivision"],
-        city: json["city"] == null ? null : cityValues.map[json["city"]],
-        state: json["state"] == null ? null : stateValues.map[json["state"]],
-        zipcode: json["zipcode"] == null ? null : json["zipcode"],
-        country: countryValues.map[json["country"]],
-        currencyCode: currencyCodeValues.map[json["currencyCode"]],
+        subDivision: json["subDivzipcodezipcodeision"],
+        city: json["city"],
+        state: json["state"],
+        zipcode: json["zipcode"],
+        country: json["country"],
+        currencyCode: json["currencyCode"],
         orderQty: json["orderQty"],
         orderAmount: json["orderAmount"],
         salesQty: json["salesQty"],
@@ -96,11 +95,11 @@ class TrendingSellerparse {
         "allowCOD": allowCod,
         "division": division,
         "subDivision": subDivision,
-        "city": city == null ? null : cityValues.reverse[city],
-        "state": state == null ? null : stateValues.reverse[state],
-        "zipcode": zipcode == null ? null : zipcode,
-        "country": countryValues.reverse[country],
-        "currencyCode": currencyCodeValues.reverse[currencyCode],
+        "city": city,
+        "state": state,
+        "zipcode": zipcode,
+        "country": country,
+        "currencyCode": currencyCode,
         "orderQty": orderQty,
         "orderAmount": orderAmount,
         "salesQty": salesQty,
@@ -109,41 +108,4 @@ class TrendingSellerparse {
         "lastAddToCart": lastAddToCart.toIso8601String(),
         "lastAddToCartThatSold": lastAddToCartThatSold.toIso8601String(),
       };
-}
-
-enum City { DHAKA, DHANMONDI_02, DHAKA_DISTRICT, D_HAKA }
-
-final cityValues = EnumValues({
-  "Dhaka": City.DHAKA,
-  "Dhaka District": City.DHAKA_DISTRICT,
-  "Dhanmondi-02": City.DHANMONDI_02,
-  "DHaka": City.D_HAKA
-});
-
-enum Country { BANGLADESH }
-
-final countryValues = EnumValues({"Bangladesh": Country.BANGLADESH});
-
-enum CurrencyCode { BDT, CURRENCY_CODE_BDT }
-
-final currencyCodeValues = EnumValues(
-    {"bdt": CurrencyCode.BDT, "BDT": CurrencyCode.CURRENCY_CODE_BDT});
-
-enum State { DHAKA, DHAKA_DIVISION }
-
-final stateValues =
-    EnumValues({"Dhaka": State.DHAKA, "Dhaka Division": State.DHAKA_DIVISION});
-
-class EnumValues<T> {
-  Map<String, T> map;
-  Map<T, String> reverseMap;
-
-  EnumValues(this.map);
-
-  Map<T, String> get reverse {
-    if (reverseMap == null) {
-      reverseMap = map.map((k, v) => new MapEntry(v, k));
-    }
-    return reverseMap;
-  }
 }

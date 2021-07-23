@@ -2,9 +2,9 @@
 
 import 'package:equatable/equatable.dart';
 
-abstract class N_shopEvent extends Equatable {}
+abstract class Event extends Equatable {}
 
-class FetchN_shop extends N_shopEvent {
+class FetchData extends Event {
   @override
   List<Object> get props => [];
 }

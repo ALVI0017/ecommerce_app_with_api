@@ -8,9 +8,9 @@ List<List<NewShopParse>> newShopParseFromJson(String str) =>
     List<List<NewShopParse>>.from(json.decode(str).map((x) =>
         List<NewShopParse>.from(x.map((x) => NewShopParse.fromJson(x)))));
 
-String newShopParseToJson(List<List<NewShopParse>> data) =>
-    json.encode(List<dynamic>.from(
-        data.map((x) => List<dynamic>.from(x.map((x) => x.toJson())))));
+// String newShopParseToJson(List<List<NewShopParse>> data) =>
+//     json.encode(List<dynamic>.from(
+//         data.map((x) => List<dynamic>.from(x.map((x) => x.toJson())))));
 
 class NewShopParse {
   NewShopParse({
@@ -46,13 +46,13 @@ class NewShopParse {
   double defaultPushScore;
   String aboutCompany;
   int allowCod;
-  dynamic division;
-  dynamic subDivision;
-  City city;
-  State state;
+  String division;
+  String subDivision;
+  String city;
+  String state;
   String zipcode;
-  Country country;
-  CurrencyCode currencyCode;
+  String country;
+  String currencyCode;
   int orderQty;
   int orderAmount;
   int salesQty;
@@ -68,16 +68,15 @@ class NewShopParse {
         sellerItemPhoto: json["sellerItemPhoto"],
         ezShopName: json["ezShopName"],
         defaultPushScore: json["defaultPushScore"].toDouble(),
-        aboutCompany:
-            json["aboutCompany"] == null ? null : json["aboutCompany"],
+        aboutCompany: json["aboutCompany"],
         allowCod: json["allowCOD"],
         division: json["division"],
         subDivision: json["subDivision"],
-        city: json["city"] == null ? null : cityValues.map[json["city"]],
-        state: json["state"] == null ? null : stateValues.map[json["state"]],
+        city: json["city"],
+        state: json["state"],
         zipcode: json["zipcode"] == null ? null : json["zipcode"],
-        country: countryValues.map[json["country"]],
-        currencyCode: currencyCodeValues.map[json["currencyCode"]],
+        country: json["country"],
+        currencyCode: json["currencyCode"],
         orderQty: json["orderQty"],
         orderAmount: json["orderAmount"],
         salesQty: json["salesQty"],
@@ -98,11 +97,11 @@ class NewShopParse {
         "allowCOD": allowCod,
         "division": division,
         "subDivision": subDivision,
-        "city": city == null ? null : cityValues.reverse[city],
-        "state": state == null ? null : stateValues.reverse[state],
-        "zipcode": zipcode == null ? null : zipcode,
-        "country": countryValues.reverse[country],
-        "currencyCode": currencyCodeValues.reverse[currencyCode],
+        "city": city,
+        "state": state,
+        "zipcode": zipcode,
+        "country": country,
+        "currencyCode": currencyCode,
         "orderQty": orderQty,
         "orderAmount": orderAmount,
         "salesQty": salesQty,
@@ -111,43 +110,4 @@ class NewShopParse {
         "lastAddToCart": lastAddToCart.toIso8601String(),
         "lastAddToCartThatSold": lastAddToCartThatSold.toIso8601String(),
       };
-}
-
-enum City { DHAKA, DHAKA_DISTRICT, EMPTY }
-
-final cityValues = EnumValues({
-  "Dhaka": City.DHAKA,
-  "Dhaka District": City.DHAKA_DISTRICT,
-  "ঢাকা জেলা": City.EMPTY
-});
-
-enum Country { BANGLADESH }
-
-final countryValues = EnumValues({"Bangladesh": Country.BANGLADESH});
-
-enum CurrencyCode { BDT, CURRENCY_CODE_BDT }
-
-final currencyCodeValues = EnumValues(
-    {"BDT": CurrencyCode.BDT, "bdt": CurrencyCode.CURRENCY_CODE_BDT});
-
-enum State { DHAKA, DHAKA_DIVISION, EMPTY }
-
-final stateValues = EnumValues({
-  "Dhaka": State.DHAKA,
-  "Dhaka Division": State.DHAKA_DIVISION,
-  "ঢাকা বিভাগ": State.EMPTY
-});
-
-class EnumValues<T> {
-  Map<String, T> map;
-  Map<T, String> reverseMap;
-
-  EnumValues(this.map);
-
-  Map<T, String> get reverse {
-    if (reverseMap == null) {
-      reverseMap = map.map((k, v) => new MapEntry(v, k));
-    }
-    return reverseMap;
-  }
 }

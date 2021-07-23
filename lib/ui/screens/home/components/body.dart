@@ -1,18 +1,6 @@
-import 'package:ecommerce_app/bloc/newarrivals/n_arrival_bloc.dart';
-import 'package:ecommerce_app/bloc/newarrivals/n_arrival_event.dart';
-import 'package:ecommerce_app/bloc/newarrivals/n_arrival_state.dart';
-import 'package:ecommerce_app/bloc/newshops/n_shop_bloc.dart';
-import 'package:ecommerce_app/bloc/newshops/n_shop_event.dart';
-import 'package:ecommerce_app/bloc/newshops/n_shop_state.dart';
-import 'package:ecommerce_app/bloc/product/ProductsState.dart';
-import 'package:ecommerce_app/bloc/product/products_Event.dart';
-import 'package:ecommerce_app/bloc/product/products_bloc.dart';
-import 'package:ecommerce_app/bloc/trendingproducts/t_product_bloc.dart';
-import 'package:ecommerce_app/bloc/trendingproducts/t_product_event.dart';
-import 'package:ecommerce_app/bloc/trendingproducts/t_product_state.dart';
-import 'package:ecommerce_app/bloc/trendingsellers/t_seller_bloc.dart';
-import 'package:ecommerce_app/bloc/trendingsellers/t_seller_event.dart';
-import 'package:ecommerce_app/bloc/trendingsellers/t_seller_state.dart';
+import 'package:ecommerce_app/bloc/event.dart';
+import 'package:ecommerce_app/bloc/state.dart';
+import 'package:ecommerce_app/bloc/bloc.dart';
 import 'package:ecommerce_app/ui/screens/home/components/product_item.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -41,15 +29,15 @@ class _BodyState extends State<Body> {
   @override
   void initState() {
     t_sellerBloc = BlocProvider.of<T_SellerBloc>(context);
-    t_sellerBloc.add(FetchT_Seller());
+    t_sellerBloc.add(FetchData());
     t_productBloc = BlocProvider.of<T_ProductBloc>(context);
-    t_productBloc.add(FetchT_Product());
+    t_productBloc.add(FetchData());
     n_arrivalBloc = BlocProvider.of<N_arrivalBloc>(context);
-    n_arrivalBloc.add(FetchN_arrival());
+    n_arrivalBloc.add(FetchData());
     n_shopBloc = BlocProvider.of<N_shopBloc>(context);
-    n_shopBloc.add(FetchN_shop());
+    n_shopBloc.add(FetchData());
     productBloc = BlocProvider.of<ProductBloc>(context);
-    productBloc.add(FetchProduct());
+    productBloc.add(FetchData());
     super.initState();
   }
 
@@ -63,10 +51,10 @@ class _BodyState extends State<Body> {
             HomeHeader(),
             SizedBox(height: getProportionateScreenWidth(10)),
 
-            BlocBuilder<T_SellerBloc, T_SellerState>(builder: (context, state) {
-              if (state is T_SellerInitialState) {
+            BlocBuilder<T_SellerBloc, X_State>(builder: (context, state) {
+              if (state is InitialState) {
                 return buildLoading();
-              } else if (state is T_SellerLoadingState) {
+              } else if (state is LoadingState) {
                 return buildLoading();
               } else if (state is T_SellerLoadedState) {
                 return build_tseller(state.t_sellers);
@@ -76,11 +64,11 @@ class _BodyState extends State<Body> {
             }),
 
             SizedBox(height: getProportionateScreenWidth(10)),
-            BlocBuilder<T_ProductBloc, T_ProductState>(
+            BlocBuilder<T_ProductBloc, X_State>(
                 builder: (context, state) {
-              if (state is T_ProductInitialState) {
+              if (state is InitialState) {
                 return buildLoading();
-              } else if (state is T_ProductLoadingState) {
+              } else if (state is LoadingState) {
                 return buildLoading();
               } else if (state is T_ProductLoadedState) {
                 return build_tproduct(state.t_products);
@@ -90,10 +78,10 @@ class _BodyState extends State<Body> {
             }),
             SizedBox(height: getProportionateScreenWidth(10)),
 
-            BlocBuilder<ProductBloc, ProductState>(builder: (context, state) {
-              if (state is ProductInitialState) {
+            BlocBuilder<ProductBloc, X_State>(builder: (context, state) {
+              if (state is InitialState) {
                 return buildLoading();
-              } else if (state is ProductLoadingState) {
+              } else if (state is LoadingState) {
                 return buildLoading();
               } else if (state is ProductLoadedState) {
                 return build_product(state.products, 3);
@@ -103,11 +91,11 @@ class _BodyState extends State<Body> {
             }),
             SizedBox(height: getProportionateScreenWidth(10)),
 
-            BlocBuilder<N_arrivalBloc, N_arrivalState>(
+            BlocBuilder<N_arrivalBloc, X_State>(
                 builder: (context, state) {
-              if (state is N_arrivalInitialState) {
+              if (state is InitialState) {
                 return buildLoading();
-              } else if (state is N_arrivalLoadingState) {
+              } else if (state is LoadingState) {
                 return buildLoading();
               } else if (state is N_arrivalLoadedState) {
                 return build_N_arrival(state.n_arrivals);
@@ -118,10 +106,10 @@ class _BodyState extends State<Body> {
             // TrendingProducts(),
             SizedBox(height: getProportionateScreenWidth(10)),
 
-            BlocBuilder<ProductBloc, ProductState>(builder: (context, state) {
-              if (state is ProductInitialState) {
+            BlocBuilder<ProductBloc, X_State>(builder: (context, state) {
+              if (state is InitialState) {
                 return buildLoading();
-              } else if (state is ProductLoadingState) {
+              } else if (state is LoadingState) {
                 return buildLoading();
               } else if (state is ProductLoadedState) {
                 return build_product(state.products, 3);
@@ -132,10 +120,10 @@ class _BodyState extends State<Body> {
             // TrendingProducts(),
             SizedBox(height: getProportionateScreenWidth(10)),
 
-            BlocBuilder<N_shopBloc, N_shopState>(builder: (context, state) {
-              if (state is N_shopInitialState) {
+            BlocBuilder<N_shopBloc, X_State>(builder: (context, state) {
+              if (state is InitialState) {
                 return buildLoading();
-              } else if (state is N_shopLoadingState) {
+              } else if (state is LoadingState) {
                 return buildLoading();
               } else if (state is N_shopLoadedState) {
                 return build_N_Shop(state.n_shops);
@@ -145,10 +133,10 @@ class _BodyState extends State<Body> {
             }),
             SizedBox(height: getProportionateScreenWidth(30)),
 
-            BlocBuilder<ProductBloc, ProductState>(builder: (context, state) {
-              if (state is ProductInitialState) {
+            BlocBuilder<ProductBloc, X_State>(builder: (context, state) {
+              if (state is InitialState) {
                 return buildLoading();
-              } else if (state is ProductLoadingState) {
+              } else if (state is LoadingState) {
                 return buildLoading();
               } else if (state is ProductLoadedState) {
                 return build_product(state.products, state.products.length);

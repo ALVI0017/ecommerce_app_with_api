@@ -44,10 +44,10 @@ class NewArrivalParse {
   int discountAmount;
   int unitPrice;
   String productImage;
-  SellerName sellerName;
+  String sellerName;
   String sellerProfilePhoto;
   String sellerCoverPhoto;
-  EzShopName ezShopName;
+  String ezShopName;
   double defaultPushScore;
   String myProductVarId;
 
@@ -66,10 +66,10 @@ class NewArrivalParse {
         discountAmount: json["discountAmount"],
         unitPrice: json["unitPrice"],
         productImage: json["productImage"],
-        sellerName: sellerNameValues.map[json["sellerName"]],
+        sellerName: json["sellerName"],
         sellerProfilePhoto: json["sellerProfilePhoto"],
         sellerCoverPhoto: json["sellerCoverPhoto"],
-        ezShopName: ezShopNameValues.map[json["ezShopName"]],
+        ezShopName: json["ezShopName"],
         defaultPushScore: json["defaultPushScore"].toDouble(),
         myProductVarId: json["myProductVarId"],
       );
@@ -88,41 +88,12 @@ class NewArrivalParse {
         "discountAmount": discountAmount,
         "unitPrice": unitPrice,
         "productImage": productImage,
-        "sellerName": sellerNameValues.reverse[sellerName],
+        "sellerName": sellerName,
         "sellerProfilePhoto": sellerProfilePhoto,
         "sellerCoverPhoto": sellerCoverPhoto,
-        "ezShopName": ezShopNameValues.reverse[ezShopName],
+        "ezShopName": ezShopName,
         "defaultPushScore": defaultPushScore,
         "myProductVarId": myProductVarId,
       };
 }
 
-enum EzShopName { DRESS_MEET, FASHIONPUNCH, DURONTOKIDS }
-
-final ezShopNameValues = EnumValues({
-  "DressMeet": EzShopName.DRESS_MEET,
-  "durontokids": EzShopName.DURONTOKIDS,
-  "fashionpunch": EzShopName.FASHIONPUNCH
-});
-
-enum SellerName { DRESS_MEET, FASHION_PUNCH, DURONTO_KIDS }
-
-final sellerNameValues = EnumValues({
-  "DressMeet": SellerName.DRESS_MEET,
-  "Duronto Kids": SellerName.DURONTO_KIDS,
-  "Fashion Punch": SellerName.FASHION_PUNCH
-});
-
-class EnumValues<T> {
-  Map<String, T> map;
-  Map<T, String> reverseMap;
-
-  EnumValues(this.map);
-
-  Map<T, String> get reverse {
-    if (reverseMap == null) {
-      reverseMap = map.map((k, v) => new MapEntry(v, k));
-    }
-    return reverseMap;
-  }
-}

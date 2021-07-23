@@ -1,8 +1,3 @@
-import 'package:ecommerce_app/bloc/newarrivals/n_arrival_bloc.dart';
-import 'package:ecommerce_app/bloc/newshops/n_shop_bloc.dart';
-import 'package:ecommerce_app/bloc/product/products_bloc.dart';
-import 'package:ecommerce_app/bloc/trendingproducts/t_product_bloc.dart';
-import 'package:ecommerce_app/bloc/trendingsellers/t_seller_bloc.dart';
 import 'package:ecommerce_app/data/repository/new_arrivals_repository.dart';
 import 'package:ecommerce_app/data/repository/new_shops_repository.dart';
 import 'package:ecommerce_app/data/repository/products_repository.dart';
@@ -12,6 +7,8 @@ import 'package:flutter/material.dart';
 import 'package:ecommerce_app/ui/components/coustom_bottom_nav_bar.dart';
 import 'package:ecommerce_app/ui/enums.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:ecommerce_app/bloc/bloc.dart';
+import 'package:ecommerce_app/bloc/bloc.dart';
 
 import 'components/body.dart';
 
