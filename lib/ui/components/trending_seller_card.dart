@@ -1,6 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:ecommerce_app/data/models/Test_Product.dart';
 
 import '../constants.dart';
 import '../size_config.dart';
